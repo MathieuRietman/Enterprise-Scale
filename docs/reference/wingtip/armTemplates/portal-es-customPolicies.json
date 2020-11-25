@@ -55,7 +55,7 @@
                         "filterPlaceholder": "Filter items ...",
                         "multiLine": true,
                         "constraints": {
-                            "allowedValues": "[map(steps('lzSettings').mngtGroupApi.value, (sub) => parse(concat('{\"label\":\"', sub.name,, '\",\"description\":\"', sub.name, '\",\"value\":\"', toLower(sub.name), '\"}')) )]",
+                            "allowedValues": "[map(steps('lzSettings').mngtGroupApi.value, (sub) => parse(concat('{\"label\":\"', sub.name, '\",\"description\":\"', sub.name, '\",\"value\":\"', toLower(sub.name), '\"}')) )]",
                             "required": true
                         }
                     }
