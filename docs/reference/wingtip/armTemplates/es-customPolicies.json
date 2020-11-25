@@ -18,17 +18,17 @@
         },
         "azEnvPolicy": "[variables('azPolicyEnvMapping')[environment().resourceManager]]",
         "deploymentUris": {
-         
-            "policyDefinitions": "[concat(uri(deployment().properties.templateLink.uri, variables('azEnvPolicy')))]",
-           
+
+            "policyDefinitions": "[concat(uri(deployment().properties.templateLink.uri, variables('azEnvPolicy')))]"
+
         },
-     
+
         "deploymentNames": {
-                       "policyDeploymentName": "[take(concat('EntScale-Policy', '-', deployment().location, guid(parameters('enterpriseScaleCompanyPrefix'))), 64)]"
+            "policyDeploymentName": "[take(concat('EntScale-Policy', '-', deployment().location, guid(parameters('enterpriseScaleCompanyPrefix'))), 64)]"
         }
     },
     "resources": [
-     
+
         {
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2019-10-01",
