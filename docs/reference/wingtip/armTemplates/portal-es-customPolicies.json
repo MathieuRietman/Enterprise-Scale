@@ -53,7 +53,7 @@
         ],
         "outputs": {
 
-            "enterpriseScaleCompanyPrefix": "[steps('lzSettings').esMgmtGroup]",
+            "enterpriseScaleCompanyPrefix": "[steps('lzSettings').esMgmtGroup]"
 
         }
     }
