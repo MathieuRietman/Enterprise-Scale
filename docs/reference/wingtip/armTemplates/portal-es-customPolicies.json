@@ -9,7 +9,7 @@
             {
                 "name": "lzSettings",
                 "label": "Enterprise-Scale company prefix",
-                "subLabel": {
+                "mngtLabel": {
                     "preValidation": "Provide the management group to deploy the custom policies to. In the reference architecture this is company prefix.",
                     "postValidation": "Done"
                 },
@@ -25,11 +25,11 @@
                         }
                     },
                     {
-                        "name": "mgmtGroupApi",
+                        "name": "mngtGroupApi",
                         "type": "Microsoft.Solutions.ArmApiControl",
                         "request": {
                             "method": "GET",
-                            "path": "managementGroups?api-version=2020-02-01"
+                            "path": "providers/Microsoft.Management/managementGroups?api-version=2020-02-01"
                         }
                     },
                     {
@@ -40,7 +40,7 @@
                             "text": "Enterprise-Scale is based on a management group hierarchy under the Tenant Root Group. Best practice is to deploy any custom policies to be used on the top level Management Group under the Tenant Root Group.",
                             "link": {
                                 "label": "Learn more",
-                                "uri": "https://docs.microsoft.com/azure/cloud-adoption-framework/ready/enterprise-scale/management-group-and-subscription-organization"
+                                "uri": "https://docs.microsoft.com/azure/cloud-adoption-framework/ready/enterprise-scale/management-group-and-mngtscription-organization"
                             }
                         }
                     },
@@ -55,7 +55,7 @@
                         "filterPlaceholder": "Filter items ...",
                         "multiLine": true,
                         "constraints": {
-                            "allowedValues": "[map(steps('lzSettings').mgmtGroupApi.value, (sub) => parse(concat('{\"label\":\"', sub.properties.displayName, '\",\"description\":\"', sub.name, '\",\"value\":\"', toLower(sub.name), '\"}')) )]",
+                            "allowedValues": "[map(steps('lzSettings').mngtGroupApi.value, (mngt) => parse(concat('{\"label\":\"', mngt.properties.displayName, '\",\"description\":\"', mngt.name, '\",\"value\":\"', toLower(mngt.name), '\"}')) )]",
                             "required": true
                         }
                     }
