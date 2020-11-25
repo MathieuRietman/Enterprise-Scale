@@ -78,8 +78,11 @@ Once you have deployed the reference implementation, you can create new subscrip
 
 Refer to the [Create Landing Zone(s)](../../EnterpriseScale-Deploy-landing-zones.md) article for guidance to create Landing Zones.
 
-### Seperate Custom Policy Deployment
+### Only the Custom Policy Deployment
 
-| Enterprise-Scale Design Principles | ARM Templates | Scale without refactoring |
-|:-------------|:--------------|:--------------|
-|![Best Practice Check](https://azurequickstartsservice.blob.core.windows.net/badges/subscription-deployments/create-rg-lock-role-assignment/BestPracticeResult.svg)|[![Deploy To Azure](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/deploytoazure.svg?sanitize=true)](https://portal.azure.com/#blade/Microsoft_Azure_CreateUIDef/CustomDeploymentBlade/uri/https%3A%2F%2Fraw.githubusercontent.com%2FMathieuRietman%2FEnterprise-Scale%2FOptionalPolicies-Deployment%2Fdocs%2Freference%2Fwingtip%2FarmTemplates%2Fes-customPolicies.json/createUIDefinitionUri/https%3A%2F%2Fraw.githubusercontent.com%2FMathieuRietman%2FEnterprise-Scale%2FOptionalPolicies-Deployment%2Fdocs%2Freference%2Fwingtip%2FarmTemplates%2Fportal-es-customPolicies.json) | Yes |
+This will deploy only the custom policies to a Management group, this is a management group deployment instead of a tenant deployment. 
+You need to select in Basic and the Management Group screen both the correct Management Group where the custom policies definitions and initiatives will be created. This can also be used to update existing custom Enterprise-Scale policies deployed via this reference architecture, this only works when there is no mismatch in parameters only new parameters are then allowed.
+
+| Type | Description | ARM Templates | 
+|:-------------------------|:-------------|:-------------|
+| Only the custom Policies | Deploys or update custom policies to a selected management group |[![Deploy To Azure](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/deploytoazure.svg?sanitize=true)](https://portal.azure.com/#blade/Microsoft_Azure_CreateUIDef/CustomDeploymentBlade/uri/https%3A%2F%2Fraw.githubusercontent.com%2FMathieuRietman%2FEnterprise-Scale%2FOptionalPolicies-Deployment%2Fdocs%2Freference%2Fwingtip%2FarmTemplates%2Fes-customPolicies.json/createUIDefinitionUri/https%3A%2F%2Fraw.githubusercontent.com%2FMathieuRietman%2FEnterprise-Scale%2FOptionalPolicies-Deployment%2Fdocs%2Freference%2Fwingtip%2FarmTemplates%2Fportal-es-customPolicies.json) | 

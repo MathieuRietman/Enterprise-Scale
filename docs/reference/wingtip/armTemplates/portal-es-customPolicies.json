@@ -7,13 +7,13 @@
         ],
         "steps": [
             {
-                "name": "lzSettings",
-                "label": "Enterprise-Scale company prefix",
+                "name": "Settings",
+                "label": "Management Group",
                 "mngtLabel": {
                     "preValidation": "Provide the management group to deploy the custom policies to. In the reference architecture this is company prefix.",
                     "postValidation": "Done"
                 },
-                "bladeTitle": "Managment Group",
+                "bladeTitle": "Management Group",
                 "elements": [
                     {
                         "name": "infoBox1",
@@ -21,7 +21,7 @@
                         "visible": true,
                         "options": {
                             "icon": "Info",
-                            "text": "Use this to deploy or update the custom policies to the selected management group."
+                            "text": "Use this to deploy or update the custom policies to a selected management group."
                         }
                     },
                     {
@@ -37,7 +37,7 @@
                         "type": "Microsoft.Common.TextBlock",
                         "visible": true,
                         "options": {
-                            "text": "Enterprise-Scale is based on a management group hierarchy under the Tenant Root Group. Best practice is to deploy any custom policies to be used on the top level Management Group under the Tenant Root Group.",
+                            "text": "Enterprise-Scale is based on a management group hierarchy under the Tenant Root Group. Best practice is to deploy any custom policies to be used on the top level Management Group under the Tenant Root Group. You must select a Management Group that is under the Management Group selected in the basic tab as this is a Managment Group deployment instead of a tenant deployment",
                             "link": {
                                 "label": "Learn more",
                                 "uri": "https://docs.microsoft.com/azure/cloud-adoption-framework/ready/enterprise-scale/management-group-and-mngtscription-organization"
@@ -55,7 +55,7 @@
                         "filterPlaceholder": "Filter items ...",
                         "multiLine": true,
                         "constraints": {
-                            "allowedValues": "[map(steps('lzSettings').mngtGroupApi.value, (sub) => parse(concat('{\"label\":\"', sub.name, '\",\"description\":\"', sub.name, '\",\"value\":\"', toLower(sub.name), '\"}')) )]",
+                            "allowedValues": "[map(steps('Settings').mngtGroupApi.value, (sub) => parse(concat('{\"label\":\"', sub.name, '\",\"description\":\"', sub.name, '\",\"value\":\"', toLower(sub.name), '\"}')) )]",
                             "required": true
                         }
                     }
@@ -64,7 +64,7 @@
         ],
         "outputs": {
 
-            "enterpriseScaleCompanyPrefix": "[steps('lzSettings').esMgmtGroup]"
+            "managementGroup": "[steps('Settings').esMgmtGroup]"
 
         }
     }
