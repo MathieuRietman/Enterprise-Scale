@@ -3,8 +3,8 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "topLevelManagementGroupPrefix": {
-      "type": "string",
-      "maxLength": 5
+      "type": "string"
+
     }
   },
   "variables": {

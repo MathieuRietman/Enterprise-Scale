@@ -80,7 +80,7 @@ Refer to the [Create Landing Zone(s)](../../EnterpriseScale-Deploy-landing-zones
 
 ### Only the Custom Policy Deployment
 
-This will deploy only the custom policies to a Management group, this is a management group deployment instead of a tenant deployment. 
+This will deploy only the custom policies to a Management group, this is a Management Group deployment instead of a tenant deployment. 
 You need to select in Basic and the Management Group screen both the correct Management Group where the custom policies definitions and initiatives will be created. This can also be used to update existing custom Enterprise-Scale policies deployed via this reference architecture, this only works when there is no mismatch in parameters only new parameters are then allowed.
 
 | Type | Description | ARM Templates | 
