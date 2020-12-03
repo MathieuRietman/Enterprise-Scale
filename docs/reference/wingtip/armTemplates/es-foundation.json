@@ -537,8 +537,7 @@
             "scope": "[concat('Microsoft.Management/managementGroups/', parameters('enterpriseScaleCompanyPrefix'))]",
             "name": "[variables('deploymentNames').roleDeploymentName]",
             "dependsOn": [
-                "[variables('deploymentNames').mgmtGroupDeploymentName]",
-                "DeploymentDelay"
+                "[variables('deploymentNames').mgmtGroupDeploymentName]"
             ],
             "location": "[deployment().location]",
             "properties": {

@@ -672,7 +672,7 @@
                         "type": "Microsoft.Common.OptionsGroup",
                         "label": "Deploy custom roles with top level scope",
                         "defaultValue": "Yes (recommended)",
-                        "toolTip": "If 'Yes' is selected ARM will deploy custome roles with assignable scopes the top level Management group.",
+                        "toolTip": "If 'Yes' is selected ARM will deploy custom roles with assignable scopes the top level Management group.",
                         "constraints": {
                             "allowedValues": [
                                 {
