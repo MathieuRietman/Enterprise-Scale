@@ -635,6 +635,59 @@
                         "visible": true
                     }
                 ]
+            },
+            {
+                "name": "lzRoles",
+                "label": "Enterprise-Scale custom RBAC roles",
+                "subLabel": {
+                    "preValidation": "Select decide to create custome roles.",
+                    "postValidation": "Done"
+                },
+                "bladeTitle": "Custom Roles",
+                "elements": [
+                    {
+                        "name": "infoBox1",
+                        "type": "Microsoft.Common.InfoBox",
+                        "visible": true,
+                        "options": {
+                            "icon": "Info",
+                            "text": "Select if you want to add sample custom roles with assignable scope of the top level Management Group Top. These are not the role assignment that need to do Manual or with azops.",
+                            "uri": "https://docs.microsoft.com/azure/role-based-access-control/elevate-access-global-admin"
+                        }
+                    },
+                    {
+                        "name": "textBlock0",
+                        "type": "Microsoft.Common.TextBlock",
+                        "visible": true,
+                        "options": {
+                            "text": "Enterprise-Scale will create the management group hierarchy under the Tenant Root Group with the prefix provided at this step.",
+                            "link": {
+                                "label": "Learn more",
+                                "uri": "https://docs.microsoft.com/azure/cloud-adoption-framework/ready/enterprise-scale/management-group-and-subscription-organization"
+                            }
+                        }
+                    },
+                    {
+                        "name": "esCustomRoles",
+                        "type": "Microsoft.Common.OptionsGroup",
+                        "label": "Deploy custom roles with top level scope",
+                        "defaultValue": "Yes (recommended)",
+                        "toolTip": "If 'Yes' is selected ARM will deploy custome roles with assignable scopes the top level Management group.",
+                        "constraints": {
+                            "allowedValues": [
+                                {
+                                    "label": "Yes (recommended)",
+                                    "value": "Yes"
+                                },
+                                {
+                                    "label": "No",
+                                    "value": "No"
+                                }
+                            ]
+                        },
+                        "visible": true
+                    }
+                ]
             }
         ],
         "outputs": {
@@ -663,7 +716,8 @@
             "retentionInDays": "[string(steps('esGoalState').esLogRetention)]",
             "enableVmMonitoring": "[steps('lzGoalState').esVmMonitoring]",
             "enableVmssMonitoring": "[steps('lzGoalState').esVmssMonitoring]",
-            "enableArcMonitoring": "[steps('lzGoalState').esArcVmMonitoring]"
+            "enableArcMonitoring": "[steps('lzGoalState').esArcVmMonitoring]",
+            "enableCustomRoles": "[steps('lzRoles').CustomRoles]"
         }
     }
 }

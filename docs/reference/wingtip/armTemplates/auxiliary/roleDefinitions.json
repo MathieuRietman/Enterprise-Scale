@@ -1,0 +1,167 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-08-01/managementGroupDeploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+
+    "parameters": {
+        "topLevelManagementGroupPrefix": {
+            "type": "string"
+
+        }
+
+    },
+    "variables": {
+        "scope": "[concat('/providers/Microsoft.Management/managementGroups/', parameters('topLevelManagementGroupPrefix'))]",
+        "roleDefinitions": {
+            "roleDefinitions": [
+                {
+                    "properties": {
+                        "Name": "Security operations (SecOps)",
+                        "Description": "Delegated role for subscription owner derived from subscription Owner role",
+                        "permissions": [
+                            {
+                                "actions": [
+                                    "Microsoft.Authorization/*/read",
+                                    "Microsoft.Authorization/policyAssignments/*",
+                                    "Microsoft.Authorization/policyDefinitions/*",
+                                    "Microsoft.Authorization/policyExemptions/*",
+                                    "Microsoft.Authorization/policySetDefinitions/*",
+                                    "Microsoft.Insights/alertRules/*",
+                                    "Microsoft.Management/managementGroups/read",
+                                    "Microsoft.operationalInsights/workspaces/*/read",
+                                    "Microsoft.Resources/deployments/*",
+                                    "Microsoft.Resources/subscriptions/resourceGroups/read",
+                                    "Microsoft.Security/*",
+                                    "Microsoft.Support/*",
+                                    "Microsoft.KeyVault/locations/deletedVaults/purge/action",
+                                    "Microsoft.PolicyInsights/*"
+
+                                ],
+                                "notActions": [
+
+                                ],
+                                "dataActions": [],
+                                "notDataActions": []
+                            }
+                        ]
+                    },
+                    "roleDefName": "Security operations (SecOps)"
+                },
+                {
+                    "properties": {
+                        "Name": "Subscription Owner",
+                        "Description": "Delegated role for subscription owner derived from subscription Owner role",
+                        "permissions": [
+                            {
+                                "actions": [
+                                    "*"
+                                ],
+                                "notActions": [
+                                    "Microsoft.Authorization/*/write",
+                                    "Microsoft.Authorization/*/Delete",
+                                    "Microsoft.Authorization/elevateAccess/Action",
+                                    "Microsoft.Network/vpnGateways/*",
+                                    "Microsoft.Network/expressRouteCircuits/*",
+                                    "Microsoft.Network/routeTables/write",
+                                    "Microsoft.Network/vpnSites/*"
+                                ],
+                                "dataActions": [],
+                                "notDataActions": []
+                            }
+                        ]
+                    },
+                    "roleDefName": "Subscription Owner"
+                },
+                {
+                    "properties": {
+                        "Name": "Application owners (DevOps/AppOps)",
+                        "Description": "Contributor role granted for application/operations team at resource group level",
+                        "permissions": [
+                            {
+                                "actions": [
+                                    "*"
+                                ],
+                                "notActions": [
+                                    "Microsoft.Authorization/*/write",
+                                    "Microsoft.Authorization/*/Delete",
+                                    "Microsoft.Authorization/elevateAccess/Action",
+                                    "Microsoft.Network/publicIPAddresses/write",
+                                    "Microsoft.Network/virtualNetworks/write",
+                                    "Microsoft.KeyVault/locations/deletedVaults/purge/action",
+                                    "Microsoft.Blueprint/blueprintAssignments/write",
+                                    "Microsoft.Blueprint/blueprintAssignments/delete",
+                                    "Microsoft.Compute/galleries/share/action"
+                                ],
+                                "dataActions": [],
+                                "notDataActions": []
+                            }
+                        ]
+                    },
+                    "roleDefName": "Application owners (DevOps/AppOps)"
+                },
+                {
+                    "properties": {
+                        "Name": "Application owners hybrid network access (DevOps/AppOps)",
+                        "Description": "Give application owners the right to create network interfaces in the hybrid network this right shoul be applied only to the hybrid network resource group",
+                        "permissions": [
+                            {
+                                "actions": [
+                                    "*"
+                                ],
+                                "notActions": [
+                                    "Microsoft.Authorization/*/read",
+                                    "Microsoft.Insights/alertRules/*",
+                                    "Microsoft.Network/applicationGateways/backendAddressPools/join/action",
+                                    "Microsoft.Network/applicationSecurityGroups/read",
+                                    "Microsoft.Network/applicationSecurityGroups/joinIpConfiguration/action",
+                                    "Microsoft.Network/loadBalancers/backendAddressPools/join/action",
+                                    "Microsoft.Network/loadBalancers/inboundNatPools/join/action",
+                                    "Microsoft.Network/loadBalancers/inboundNatRules/join/action",
+                                    "Microsoft.Network/loadBalancers/probes/join/action",
+                                    "Microsoft.Network/loadBalancers/read",
+                                    "Microsoft.Network/networkInterfaces/*",
+                                    "Microsoft.Network/locations/*",
+                                    "Microsoft.Network/networkSecurityGroups/join/action",
+                                    "Microsoft.Network/networkSecurityGroups/read",
+                                    "Microsoft.Network/publicIPAddresses/join/action",
+                                    "Microsoft.Network/publicIPAddresses/read",
+                                    "Microsoft.Network/virtualNetworks/read",
+                                    "Microsoft.Network/virtualNetworks/subnets/read",
+                                    "Microsoft.Network/virtualNetworks/subnets/join/action",
+                                    "Microsoft.ResourceHealth/availabilityStatuses/read",
+                                    "Microsoft.Resources/deployments/*",
+                                    "Microsoft.Resources/subscriptions/resourceGroups/read",
+                                    "Microsoft.Support/*"
+                                ],
+                                "dataActions": [],
+                                "notDataActions": []
+                            }
+                        ]
+                    },
+                    "roleDefName": "Application owners hybrid network access (DevOps/AppOps)"
+                }
+
+            ]
+        }
+    },
+    "resources": [
+        {
+            "type": "Microsoft.Authorization/roleDefinitions",
+            "name": "[guid(parameters('topLevelManagementGroupPrefix'),variables('roleDefinitions').roleDefinitions[copyIndex()].roleDefName, variables('roleDefinitions').roleDefinitions[copyIndex()].properties.description)]",
+            "apiVersion": "2018-07-01",
+            "copy": {
+                "name": "roleDefinitionCopy",
+                "count": "[length(variables('roleDefinitions').roleDefinitions)]"
+            },
+            "properties": {
+                "roleName": "[variables('roleDefinitions').roleDefinitions[copyIndex()].properties.Name]",
+                "description": "[variables('roleDefinitions').roleDefinitions[copyIndex()].properties.description]",
+                "type": "customRole",
+                "isCustom": true,
+                "permissions": "[variables('roleDefinitions').roleDefinitions[copyIndex()].properties.permissions]",
+                "assignableScopes": [
+                    "[variables('scope')]"
+                ]
+            }
+        }
+    ]
+}
