@@ -638,7 +638,7 @@
             },
             {
                 "name": "lzRoles",
-                "label": "Enterprise-Scale custom RBAC roles",
+                "label": "Custom RBAC roles",
                 "subLabel": {
                     "preValidation": "Select decide to create custome roles.",
                     "postValidation": "Done"
@@ -651,7 +651,7 @@
                         "visible": true,
                         "options": {
                             "icon": "Info",
-                            "text": "Select if you want to add sample custom roles with assignable scope of the top level Management Group Top. These are not the role assignment that need to do Manual or with azops.",
+                            "text": "Select if you want to add sample custom roles with assignable scope of the top level Management Group. These are not the role assignment that need to do manual or with AzOps.",
                             "uri": "https://docs.microsoft.com/azure/role-based-access-control/elevate-access-global-admin"
                         }
                     },
