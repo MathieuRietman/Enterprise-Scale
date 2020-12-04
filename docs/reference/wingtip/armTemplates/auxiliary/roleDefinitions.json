@@ -71,6 +71,33 @@
                     },
                     "roleDefName": "Subscription Owner"
                 },
+                 {
+                    "properties": {
+                        "Name": "Subscription Owner no network write",
+                        "Description": "Delegated role for subscription owner derived from subscription Owner role",
+                        "permissions": [
+                            {
+                                "actions": [
+                                    "*"
+                                ],
+                                "notActions": [
+                                    "Microsoft.Authorization/*/write",
+                                    "Microsoft.Authorization/*/Delete",
+                                    "Microsoft.Authorization/elevateAccess/Action",
+                                    "Microsoft.Network/virtualNetworks/write",
+                                    "Microsoft.Network/virtualNetworks/delete",
+                                    "Microsoft.Network/vpnGateways/*",
+                                    "Microsoft.Network/expressRouteCircuits/*",
+                                    "Microsoft.Network/routeTables/write",
+                                    "Microsoft.Network/vpnSites/*"
+                                ],
+                                "dataActions": [],
+                                "notDataActions": []
+                            }
+                        ]
+                    },
+                    "roleDefName": "Subscription Owner no network write"
+                },
                 {
                     "properties": {
                         "Name": "Application owners (DevOps/AppOps)",
@@ -105,9 +132,6 @@
                         "permissions": [
                             {
                                 "actions": [
-                                    "*"
-                                ],
-                                "notActions": [
                                     "Microsoft.Authorization/*/read",
                                     "Microsoft.Insights/alertRules/*",
                                     "Microsoft.Network/applicationGateways/backendAddressPools/join/action",
@@ -131,6 +155,9 @@
                                     "Microsoft.Resources/deployments/*",
                                     "Microsoft.Resources/subscriptions/resourceGroups/read",
                                     "Microsoft.Support/*"
+                                ],
+                                "notActions": [
+
                                 ],
                                 "dataActions": [],
                                 "notDataActions": []
