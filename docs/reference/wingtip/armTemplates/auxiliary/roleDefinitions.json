@@ -16,10 +16,12 @@
                 {
                     "properties": {
                         "Name": "Security operations (SecOps)",
-                        "Description": "Delegated role for subscription owner derived from subscription Owner role",
+                        "Description": "Security administrator role with a horizontal view across the entire Azure estate and the Azure Key Vault purge policy",
                         "permissions": [
                             {
                                 "actions": [
+                                    "*/read", 
+                                    "*/register/action",
                                     "Microsoft.Authorization/*/read",
                                     "Microsoft.Authorization/policyAssignments/*",
                                     "Microsoft.Authorization/policyDefinitions/*",
@@ -49,7 +51,7 @@
                 {
                     "properties": {
                         "Name": "Subscription Owner",
-                        "Description": "Delegated role for subscription owner derived from subscription Owner role",
+                        "Description": "Delegated role for subscription owner derived from subscription Owner role, no modify rights on role assignment and routes",
                         "permissions": [
                             {
                                 "actions": [
@@ -62,6 +64,9 @@
                                     "Microsoft.Network/vpnGateways/*",
                                     "Microsoft.Network/expressRouteCircuits/*",
                                     "Microsoft.Network/routeTables/write",
+                                    "Microsoft.Network/routeTables/delete",
+                                    "Microsoft.Network/routeTables/routes/write",
+                                    "Microsoft.Network/routeTables/routes/delete",
                                     "Microsoft.Network/vpnSites/*"
                                 ],
                                 "dataActions": [],
@@ -71,10 +76,10 @@
                     },
                     "roleDefName": "Subscription Owner"
                 },
-                 {
+                {
                     "properties": {
-                        "Name": "Subscription Owner no network write",
-                        "Description": "Delegated role for subscription owner derived from subscription Owner role",
+                        "Name": "Subscription Owner no Network write",
+                        "Description": "Delegated role for subscription owner derived from subscription Owner role, no modify rights on role assignment and routes and no network write delete permissions",
                         "permissions": [
                             {
                                 "actions": [
@@ -87,8 +92,14 @@
                                     "Microsoft.Network/virtualNetworks/write",
                                     "Microsoft.Network/virtualNetworks/delete",
                                     "Microsoft.Network/vpnGateways/*",
+                                    "Microsoft.Network/azurefirewalls/*",
                                     "Microsoft.Network/expressRouteCircuits/*",
                                     "Microsoft.Network/routeTables/write",
+                                    "Microsoft.Network/routeTables/delete",
+                                    "Microsoft.Network/routeTables/routes/write",
+                                    "Microsoft.Network/routeTables/routes/delete",
+                                    "Microsoft.Network/virtualNetworks/virtualNetworkPeerings/write",
+                                    "Microsoft.Network/virtualNetworks/virtualNetworkPeerings/delete",
                                     "Microsoft.Network/vpnSites/*"
                                 ],
                                 "dataActions": [],
@@ -101,7 +112,7 @@
                 {
                     "properties": {
                         "Name": "Application owners (DevOps/AppOps)",
-                        "Description": "Contributor role granted for application/operations team at resource group level",
+                        "Description": "Contributor role granted for application/operations team at resource group level, can also be applied on subscription level has more restricted network rights then subscription owner. When using only on resource group level consider the delete resource group right to add to the notactions.",
                         "permissions": [
                             {
                                 "actions": [
@@ -113,10 +124,28 @@
                                     "Microsoft.Authorization/elevateAccess/Action",
                                     "Microsoft.Network/publicIPAddresses/write",
                                     "Microsoft.Network/virtualNetworks/write",
+                                    "Microsoft.Network/virtualNetworks/delete",
                                     "Microsoft.KeyVault/locations/deletedVaults/purge/action",
                                     "Microsoft.Blueprint/blueprintAssignments/write",
                                     "Microsoft.Blueprint/blueprintAssignments/delete",
-                                    "Microsoft.Compute/galleries/share/action"
+                                    "Microsoft.Compute/galleries/share/action",
+                                    "Microsoft.Network/vpnGateways/*",
+                                    "Microsoft.Network/azurefirewalls/*",
+                                    "Microsoft.Network/expressRouteCircuits/*",
+                                    "Microsoft.Network/routeTables/write",
+                                    "Microsoft.Network/routeTables/delete",
+                                    "Microsoft.Network/routeTables/routes/write",
+                                    "Microsoft.Network/routeTables/routes/delete",
+                                    "Microsoft.Network/networkSecurityGroups/securityRules/write",
+                                    "Microsoft.Network/networkSecurityGroups/securityRules/delete",
+                                    "Microsoft.Network/networkSecurityGroups/write",
+                                    "Microsoft.Network/networkSecurityGroups/delete",
+                                    "Microsoft.Network/networkSecurityGroups/join/action",
+                                    "Microsoft.Network/virtualNetworks/virtualNetworkPeerings/write",
+                                    "Microsoft.Network/virtualNetworks/virtualNetworkPeerings/delete",
+                                    "Microsoft.Network/virtualNetworks/subnets/write",
+                                    "Microsoft.Network/virtualNetworks/subnets/delete",
+                                    "Microsoft.Network/vpnSites/*"
                                 ],
                                 "dataActions": [],
                                 "notDataActions": []
