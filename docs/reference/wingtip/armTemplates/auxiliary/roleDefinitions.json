@@ -112,7 +112,7 @@
                 {
                     "properties": {
                         "Name": "Application owners (DevOps/AppOps)",
-                        "Description": "Contributor role granted for application/operations team at resource group level, can also be applied on subscription level has more restricted network rights then subscription owner. When using only on resource group level consider the delete resource group right to add to the notactions.",
+                        "Description": "Contributor role granted for application/operations team at resource group level, can also be applied on subscription. This role derived from contributor role with additional restrictions to modify network resources. Consider when using this role only on the resource group level to add the delete resource group right to the notactions",
                         "permissions": [
                             {
                                 "actions": [
@@ -157,7 +157,7 @@
                 {
                     "properties": {
                         "Name": "Application owners hybrid network access (DevOps/AppOps)",
-                        "Description": "Give application owners the right to create network interfaces in the hybrid network this right shoul be applied only to the hybrid network resource group",
+                        "Description": "Give application owners the right to create network interfaces in the hybrid network. This role should be applied only to the hybrid network resource group. This should only be used in when Application owner (DevOps/AppOps) is used on resource group level, this is not needed when this role is applied on subscription level.",
                         "permissions": [
                             {
                                 "actions": [
