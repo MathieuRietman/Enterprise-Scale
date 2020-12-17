@@ -46,7 +46,7 @@
                             }
                         ]
                     },
-                    "roleDefName": "Security operations (SecOps)"
+                    "roleDefName": "SecOps"
                 },
                 {
                     "properties": {
@@ -74,7 +74,7 @@
                             }
                         ]
                     },
-                    "roleDefName": "Subscription Owner"
+                    "roleDefName": "SubscriptionOwner"
                 },
                 {
                     "properties": {
@@ -107,7 +107,7 @@
                             }
                         ]
                     },
-                    "roleDefName": "Subscription Owner no network write"
+                    "roleDefName": "SubscriptionOwnerNoNetwork"
                 },
                 {
                     "properties": {
@@ -152,7 +152,7 @@
                             }
                         ]
                     },
-                    "roleDefName": "Application owners (DevOps/AppOps)"
+                    "roleDefName": "DevOpsAppOps"
                 },
                 {
                     "properties": {
@@ -193,7 +193,7 @@
                             }
                         ]
                     },
-                    "roleDefName": "Application owners hybrid network access (DevOps/AppOps)"
+                    "roleDefName": "DevOpsAppOpsHybridNetworkAccess"
                 }
 
             ]
@@ -202,7 +202,7 @@
     "resources": [
         {
             "type": "Microsoft.Authorization/roleDefinitions",
-            "name": "[guid(parameters('topLevelManagementGroupPrefix'),variables('roleDefinitions').roleDefinitions[copyIndex()].roleDefName, variables('roleDefinitions').roleDefinitions[copyIndex()].properties.description)]",
+            "name": "[guid(parameters('topLevelManagementGroupPrefix'),variables('roleDefinitions').roleDefinitions[copyIndex()].roleDefName)]",
             "apiVersion": "2018-07-01",
             "copy": {
                 "name": "roleDefinitionCopy",
